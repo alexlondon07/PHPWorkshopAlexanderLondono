@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://apirestful-codeigniter3-angular.app/';
+$config['base_url'] = 'http://localhost:8888/GitHub/PHPWorkshopAlexanderLondono/Backend/servidor/ArticlesAPI/';
 
 /*
 |--------------------------------------------------------------------------
