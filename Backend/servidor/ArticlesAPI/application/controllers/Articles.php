@@ -51,11 +51,11 @@ class Articles extends REST_Controller {
     }
 
     public function index_put($id){
-        if(!$this->post('article') || !$id){
+        if(!$this->put('article') || !$id){
             $this->response(null, 400);
         }
 
-        $update = $this->Articles_model->update($id, $this->post('artcile'));
+        $update = $this->Articles_model->update($id, $this->put('artcile'));
         if(!is_null($update)){
             $this->response(array('response' => 'Articulo editado correctamente'), 200);
         }else{
@@ -63,7 +63,7 @@ class Articles extends REST_Controller {
         }
     }
 
-    public function delete_put($id){
+    public function index_delete($id){
         if(!$id){
             $this->response(null, 400);
         }
