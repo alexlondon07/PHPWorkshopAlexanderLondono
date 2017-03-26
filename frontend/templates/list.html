@@ -1,3 +1,5 @@
+
+<h1>All Articles</h1>
 <div class="row">
     <div class="panel-body">
         <div class="alert alert-warning" ng-hide="articles">
@@ -8,18 +10,17 @@
                 <div class="thumbnail">
                     <div class="media">
                         <div class="pull-right action-buttons">
-                            <a href="#/view/{{article.id}}"><span class="glyphicon glyphicon-eye-open"></span> </a>
+                            <a href="#/edit/{{article.id}}"><span class="glyphicon glyphicon-eye-open"></span> </a>
                             <a ng-click="remove(article.id)" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
                         </div>
                         <div class="media-left">
                             <a href="#">
-                                <img class="media-object" src="..." alt="...">
+                                <img class="media-object" src="https://alexlondon07.github.io/images/iconos/iconos-Php.png" alt="{{ article.title }}">
                             </a>
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">{{ article.title }}</h4>
                             <p>{{ article.description }}</p>
-                            <p><a href="#" class="btn btn-primary" role="button">View more</a></p>
                         </div>
                     </div>
                 </div>

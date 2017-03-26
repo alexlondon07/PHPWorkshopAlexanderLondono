@@ -50,15 +50,14 @@ class Articles extends REST_Controller {
         }
     }
 
-    public function index_put($id){
-        if(!$this->put('article') || !$id){
+     public function index_put(){
+        if (!$this->put('article')) {
             $this->response(null, 400);
         }
-
-        $update = $this->Articles_model->update($id, $this->put('artcile'));
-        if(!is_null($update)){
-            $this->response(array('response' => 'Articulo editado correctamente'), 200);
-        }else{
+        $update = $this->Articles_model->update($this->put('article'));
+        if (!is_null($update)) {
+            $this->response(array('response' => 'Articulo editado correctamente!'), 200);
+        } else {
             $this->response(array('error' => 'Error en el servidor'), 400);
         }
     }

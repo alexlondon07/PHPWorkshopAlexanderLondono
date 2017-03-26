@@ -37,16 +37,15 @@ class Articles_model extends CI_Model{
         return null;
     }
 
-    public function update($id, $article){
+    public function update($article){
+        $id = $article['id'];
         $this->db->set($this->_setArticle($article))->where('id', $id)->update($this->table);
-
-        //Validamos si hubieron filas afectadas
-        if($this->db->affected_rows() === 1){
+        if ($this->db->affected_rows() === 1) {
             return true;
         }
-        
         return null;
     }
+
 
     public function delete($id){
         $this->db->where('id', $id)->delete($this->table);
@@ -63,7 +62,7 @@ class Articles_model extends CI_Model{
         return array(
             'id' => $article['id'],
             'title' => $article['title'],
-            'description' => $article['description'],
-            'img_route' => $article['img_route']);
+            'description' => $article['description']);
+            //'img_route' => $article['img_route']);
     }
 }

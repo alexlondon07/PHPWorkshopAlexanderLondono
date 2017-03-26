@@ -10,7 +10,7 @@ var app = angular.module('app', ['ngRoute', 'ngResource'])
                 templateUrl: 'templates/edit.html',
                 controller: 'EditCtrl'
             })
-            .when('/create/', {
+            .when('/create', {
                 templateUrl: 'templates/create.html',
                 controller: 'CreateCtrl'
             })
@@ -41,7 +41,7 @@ var app = angular.module('app', ['ngRoute', 'ngResource'])
     .controller('CreateCtrl', ['$scope', 'Articles', function ($scope, Articles) {
         $scope.settings = {
             pageTitle: "Add article",
-            action: "Add"
+            action: "Save"
         };
 
         //Setiamos nuestras variables.
@@ -53,78 +53,40 @@ var app = angular.module('app', ['ngRoute', 'ngResource'])
 
         //Funcion para guardar nuestra articulo
         $scope.submit = function () {
-            Articles.save({ article: $scope.article }).$promise.then(function (data) {
-                if (data.response) {
-                    angular.copy({}, $scope.article);
-                    $scope.settings.success = "The article has been correctly created.!";
-                }
-            })
+            try {
+                Articles.save({ article: $scope.article }).$promise.then(function (data) {
+                    if (data.response) {
+                        angular.copy({}, $scope.article);
+                        $scope.settings.success = "The article has been correctly created.!";
+                    }
+                })
+            } catch (error) {
+                console.log(error);
+            }
         }
     }])
 
     .controller('EditCtrl', ['$scope', 'Articles', '$routeParams', function ($scope, Articles, $routeParams) {
         $scope.settings = {
-            pageTitle: "Edit article",
-            action: "Edit"
+            pageTitle: "Update article",
+            action: "Save/Update"
         };
 
         var id = $routeParams.id;
 
+        //Obtenemos informacion de articulo especifico.
         Articles.get({ id: id }, function (data) {
             $scope.article = data.response;
         });
 
         $scope.submit = function () {
-            Articles.update({ article: $scope.article }, function (data) {
-                $scope.settings.success = "The article has been correctly edited.!";
-            });
-        }
-    }])
-
-    .controller('AddForecastCtrl', ['$scope', 'Forecast', 'Articles', '$route', function ($scope, Forecast, Articles, $route) {
-        Articles.get(function (data) {
-            $scope.Articles = data.response;
-        })
-
-        $scope.settings = {
-            pageTitle: "Add pronóstico a una ciudad",
-            action: "Add"
-        };
-
-        $scope.forecast = {
-            forecast: "",
-            date: "",
-            id_article: ""
-        };
-
-        $scope.submit = function () {
-            Forecast.save({ forecast: $scope.forecast }).$promise.then(function (data) {
-                if (data.response) {
-                    angular.copy({}, $scope.forecast);
-                    $scope.settings.success = "El pronóstico ha sido agregado correctamente!";
-                }
-            })
-        }
-    }])
-
-    .controller('ViewCtrl', ['$scope', 'Forecast', 'Articles', '$routeParams', '$route', function ($scope, Forecast, Articles, $routeParams, $route) {
-        var id = $routeParams.id;
-
-        Articles.get({ id: id }, function (data) {
-            $scope.article = data.response;
-        });
-
-        Forecast.get({ id: id }, function (data) {
-            console.log(data.response);
-            $scope.forecast = data.response;
-        })
-
-        $scope.remove = function (id) {
-            Forecast.delete({ id: id }).$promise.then(function (data) {
-                if (data.response) {
-                    $route.reload();
-                }
-            })
+            try {
+                Articles.update({ article: $scope.article }, function (data) {
+                    $scope.settings.success = "The article has been correctly edited.!";
+                });
+            } catch (error) {
+                console.log(error);
+            }
         }
     }])
 
