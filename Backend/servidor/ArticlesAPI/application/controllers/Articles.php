@@ -11,11 +11,12 @@ class Articles extends REST_Controller {
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('articles_model');
+        $this->load->database();
+        $this->load->model("Articles_model");
     }
 
     public function index_get(){
-        $articles = $this->articles_model->get();
+        $articles = $this->Articles_model->get();
         if(!is_null($articles)){
             $this->response(array('response' => $articles), 200);
         }else{
@@ -28,7 +29,7 @@ class Articles extends REST_Controller {
             $this->reponse(null, 400);
         }
 
-        $article = $this->articles_model->get($id);
+        $article = $this->Articles_model->get($id);
         if(!is_null($article)){
             $this->response(array('response' => $article), 200);
         }else{
@@ -41,7 +42,7 @@ class Articles extends REST_Controller {
             $this->reponse(null, 400);
         }
 
-        $data = $this->articles_model->save($this->post('article'));
+        $data = $this->Articles_model->save($this->post('article'));
         if(!is_null($data)){
             $this->response(array('response' => $data), 200);
         }else{
@@ -54,7 +55,7 @@ class Articles extends REST_Controller {
             $this->response(null, 400);
         }
 
-        $update = $this->articles_model->update($id, $this->post('artcile'));
+        $update = $this->Articles_model->update($id, $this->post('artcile'));
         if(!is_null($update)){
             $this->response(array('response' => 'Articulo editado correctamente'), 200);
         }else{
@@ -67,7 +68,7 @@ class Articles extends REST_Controller {
             $this->response(null, 400);
         }
 
-        $delete = $this->articles_model->delete($id);
+        $delete = $this->Articles_model->delete($id);
         if(!is_null($delete)){
              $this->response(array('response' => 'Articulo eliminado correctamente'), 200);
         }else{
