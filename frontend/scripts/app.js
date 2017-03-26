@@ -2,7 +2,7 @@ var app = angular.module('app', ['ngRoute', 'ngResource'])
 
     .config(['$routeProvider', function ($routerProvider) {
         $routerProvider
-            .when('/home', {
+            .when('/', {
                 templateUrl: 'templates/list.html',
                 controller: 'HomeCtrl'
             })
@@ -10,32 +10,31 @@ var app = angular.module('app', ['ngRoute', 'ngResource'])
                 templateUrl: 'templates/edit.html',
                 controller: 'EditCtrl'
             })
-            .when('/create', {
+            .when('/create/', {
                 templateUrl: 'templates/create.html',
                 controller: 'CreateCtrl'
             })
-            .otherwise({ redirectTo: '/home' });
+            .otherwise({ redirectTo: '/' });
     }])
-
 
     //Contraoladores de nuestra API
     .controller('HomeCtrl', ['$scope', 'Articles', '$route', function ($scope, Articles, $route) {
-        Articles.get(function (data) {
-            $scope.articles = data.response;
-        })
+    Articles.get(function (data) {
+        $scope.articles = data.response;
+    })
 
-        //Funcion para eliminar un articulo
-        $scope.remove = function (id) {
-            var acepted = confirm('You are deleting information irreversibly.\n¿You want to continue?');
-            if (acepted) {
-                Articles.delete({ id: id }).$promise.then(function (data) {
-                    if (data.response) {
-                        $route.reload();
-                    }
-                })
-            }
+    //Funcion para eliminar un articulo
+    $scope.remove = function (id) {
+        var acepted = confirm('You are deleting information irreversibly.\n¿You want to continue?');
+        if (acepted) {
+            Articles.delete({ id: id }).$promise.then(function (data) {
+                if (data.response) {
+                    $route.reload();
+                }
+            })
         }
-    }])
+    }
+}])
 
     //Controlador para agregar un nuevo articulo
     .controller('CreateCtrl', ['$scope', 'Articles', function ($scope, Articles) {
