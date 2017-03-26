@@ -15,7 +15,7 @@ class Articles_model extends CI_Model{
             if($query->num_rows() === 1){
                 return $query->row_array();
             }else{
-                return false;
+                return null;
             }
         }
 
@@ -34,7 +34,7 @@ class Articles_model extends CI_Model{
             return $this->db->insert_id();
         }
         
-        return false;
+        return null;
     }
 
     public function update($id, $article){
@@ -45,7 +45,7 @@ class Articles_model extends CI_Model{
             return true;
         }
         
-        return false;
+        return null;
     }
 
     public function delete($id){
@@ -56,7 +56,7 @@ class Articles_model extends CI_Model{
             return true;
         }
         
-        return false;
+        return null;
     }
 
     private function _setArticle($article){
