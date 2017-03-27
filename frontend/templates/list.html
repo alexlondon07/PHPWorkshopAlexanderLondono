@@ -1,12 +1,16 @@
-<h1>All articles</h1>
+<div class="jumbotron">
+    <div class="container">
+        <h1>All articles</h1>
+        <p>Simple API REST Framework: codeigniter 3 Frontend: Angujarjs </p>
+        <a href="#!/create" class="btn btn-primary btn-lg pull-right">
+            <i class="glyphicon glyphicon-plus"></i>New Article
+        </a>
+    </div>
+</div>
 
 <div class="alert alert-warning" ng-hide="articles">
     <p>There are no articles in the database...</p>
 </div>
-
-<a href="#!/create" class="btn btn-primary btn-lg">
-    <i class="glyphicon glyphicon-plus"></i>New Article
-</a>
 
 <div class="row">
     <div class="col-sm-6 col-md-4" ng-repeat="article in articles">
