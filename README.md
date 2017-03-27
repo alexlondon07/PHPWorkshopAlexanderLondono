@@ -8,3 +8,10 @@ api-articles-db
 Nombre de la tabla:
 articles
 
+
+Backend:
+Backend/servidor/ArticlesAPI
+Framework: codeigniter 3
+
+Frontend:
+Angujarjs
