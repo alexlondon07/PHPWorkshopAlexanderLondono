@@ -1,17 +1,24 @@
 # PHPWorkshopAlexanderLondono
 PHPWorkshopAlexanderLondono API REST 
 
-Base de datos:
+
+## DATABASE
 api-articles-db
 
 
-Nombre de la tabla:
+## TABLE
 articles
 
 
-Backend:
+## BACKEND
 Backend/servidor/ArticlesAPI
 Framework: codeigniter 3
 
-Frontend:
+
+## FRONTEND
 Angujarjs
+
+
+## Aplication
+
+![home](https://github.com/alexlondon07/PHPWorkshopAlexanderLondono/blob/master/app-test-.gif)
